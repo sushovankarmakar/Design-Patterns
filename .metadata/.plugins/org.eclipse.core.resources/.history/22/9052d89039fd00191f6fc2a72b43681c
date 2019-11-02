@@ -81,9 +81,9 @@ class TestClass {
 		
 		print("s4", s4);
 		
-//		//Clone example
-//		Singleton s5 = (Singleton) s2.clone();
-//		print("s5", s5);
+		//Clone example
+		Singleton s5 = (Singleton) s2.clone();
+		print("s5", s5);
 		
 		
 //		

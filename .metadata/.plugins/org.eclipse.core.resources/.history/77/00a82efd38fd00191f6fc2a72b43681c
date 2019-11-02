@@ -4,7 +4,6 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.io.ObjectStreamException;
 import java.io.Serializable;
 import java.lang.reflect.Constructor;
 import java.util.concurrent.ExecutorService;
@@ -31,15 +30,10 @@ public class Singleton implements Serializable, Cloneable {
 		return soleInstance;
 	}
 	
-	@Override
-	protected Object clone() throws CloneNotSupportedException {
-		return super.clone();
-	}
-	
-	private Object readResolve() throws ObjectStreamException {
-		System.out.println("..Read resolve..");
-		return soleInstance;
-	}
+//	@Override
+//	protected Object clone() throws CloneNotSupportedException {
+//		return super.clone();
+//	}
 	
 }
 
@@ -62,15 +56,14 @@ class TestClass {
 		
 		
 		//Reflection example
-//		System.out.println("\nUsing Reflection");
-//		Class clazz = Class.forName("patterns.Singleton"); 
-//		Constructor<Singleton> ctor = clazz.getDeclaredConstructor(); 
-//		ctor.setAccessible(true); 
-//		Singleton s3 = ctor.newInstance();
-//		print("s3", s3);
+		System.out.println("\nUsing Reflection");
+		Class clazz = Class.forName("patterns.Singleton"); 
+		Constructor<Singleton> ctor = clazz.getDeclaredConstructor(); 
+		ctor.setAccessible(true); 
+		Singleton s3 = ctor.newInstance();
+		print("s3", s3);
 		
 		//Serialization example
-		System.out.println("\nSerialization Example");
 		ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("C:/Users/skarmakar/eclipse-workspace/DesignPatterns"
 				+ "/JavaDesignPatterns/src/patterns/tmp/s2.ser"));
 		oos.writeObject(s2);
@@ -84,8 +77,8 @@ class TestClass {
 //		//Clone example
 //		Singleton s5 = (Singleton) s2.clone();
 //		print("s5", s5);
-		
-		
+//		
+//		
 //		
 //		ExecutorService service = Executors.newFixedThreadPool(2);
 //		service.submit(TestClass::useSingleton);
