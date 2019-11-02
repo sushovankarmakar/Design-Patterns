@@ -29,22 +29,14 @@ public class Singleton implements Serializable, Cloneable {
 	public static Singleton getInstance() {
 		// multiple threads cause trouble only when you're lazily creating the object
 		// double check locking 
-//		if(soleInstance == null) {  // check 1
-//			synchronized(Singleton.class) {
-//				if(soleInstance == null) { // check 2
-//					soleInstance = new Singleton();    // lazy initialization of object
-//				}
-//			}
-//		}
-//		return soleInstance;
-		
-		
-		return Holder.INSTANCE;
-	}
-	
-	// Singleton holder
-	static class Holder {
-		static final Singleton INSTANCE = new Singleton();
+		if(soleInstance == null) {  // check 1
+			synchronized(Singleton.class) {
+				if(soleInstance == null) { // check 2
+					soleInstance = new Singleton();    // lazy initialization of object
+				}
+			}
+		}
+		return soleInstance;
 	}
 	
 	@Override

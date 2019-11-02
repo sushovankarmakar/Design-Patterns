@@ -40,9 +40,10 @@ public class Singleton implements Serializable, Cloneable {
 		
 		
 		return Holder.INSTANCE;
+		
+		
 	}
 	
-	// Singleton holder
 	static class Holder {
 		static final Singleton INSTANCE = new Singleton();
 	}
