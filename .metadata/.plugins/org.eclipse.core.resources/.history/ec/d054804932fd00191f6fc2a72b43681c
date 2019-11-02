@@ -18,6 +18,7 @@ public class Singleton implements Serializable, Cloneable {
 	
 	private Singleton() {
 		if(soleInstance != null) {
+			System.out.println("Cannot create, please use getInstance()");
 			throw new RuntimeException("Cannot create, please use getInstance()");
 		}
 		

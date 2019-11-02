@@ -47,6 +47,12 @@ class TestClass {
 	
 	public static void main(String[] args) throws Exception {
 				
+		System.out.println("\nUsing Reflection");
+		Class clazz = Class.forName("patterns.Singleton"); 
+		Constructor<Singleton> ctor = clazz.getDeclaredConstructor(); 
+		//ctor.setAccessible(true); 
+		Singleton s3 = ctor.newInstance();
+		print("s3", s3);
 		
 		Singleton s1 = Singleton.getInstance();
 		Singleton s2 = Singleton.getInstance();
@@ -56,12 +62,12 @@ class TestClass {
 		
 		
 		//Reflection example
-		System.out.println("\nUsing Reflection");
-		Class clazz = Class.forName("patterns.Singleton"); 
-		Constructor<Singleton> ctor = clazz.getDeclaredConstructor(); 
-		ctor.setAccessible(true); 
-		Singleton s3 = ctor.newInstance();
-		print("s3", s3);
+//		System.out.println("\nUsing Reflection");
+//		Class clazz = Class.forName("patterns.Singleton"); 
+//		Constructor<Singleton> ctor = clazz.getDeclaredConstructor(); 
+//		//ctor.setAccessible(true); 
+//		Singleton s3 = ctor.newInstance();
+//		print("s3", s3);
 		
 		//Serialization example
 //		ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("C:/Users/skarmakar/eclipse-workspace/DesignPatterns"

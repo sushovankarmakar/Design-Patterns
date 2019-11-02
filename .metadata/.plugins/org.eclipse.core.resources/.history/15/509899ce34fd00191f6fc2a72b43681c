@@ -59,7 +59,7 @@ class TestClass {
 		System.out.println("\nUsing Reflection");
 		Class clazz = Class.forName("patterns.Singleton"); 
 		Constructor<Singleton> ctor = clazz.getDeclaredConstructor(); 
-		ctor.setAccessible(true); 
+		//ctor.setAccessible(true); 
 		Singleton s3 = ctor.newInstance();
 		print("s3", s3);
 		
