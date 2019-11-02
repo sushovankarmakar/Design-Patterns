@@ -34,9 +34,9 @@ public class Singleton implements Serializable, Cloneable {
 	@Override
 	protected Object clone() throws CloneNotSupportedException {
 		
-		if(soleInstance != null) {
-			throw new RuntimeException("Cannot clone, please use getInstance()");
-		}
+//		if(soleInstance != null) {
+//			throw new RuntimeException("Cannot clone, please use getInstance()");
+//		}
 		
 		return super.clone();
 	}

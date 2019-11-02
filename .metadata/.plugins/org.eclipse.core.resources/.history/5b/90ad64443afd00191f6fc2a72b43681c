@@ -33,11 +33,6 @@ public class Singleton implements Serializable, Cloneable {
 	
 	@Override
 	protected Object clone() throws CloneNotSupportedException {
-		
-		if(soleInstance != null) {
-			throw new RuntimeException("Cannot clone, please use getInstance()");
-		}
-		
 		return super.clone();
 	}
 	
@@ -86,9 +81,9 @@ class TestClass {
 		
 		print("s4", s4);
 		
-		//Clone example
-		Singleton s5 = (Singleton) s2.clone();
-		print("s5", s5);
+//		//Clone example
+//		Singleton s5 = (Singleton) s2.clone();
+//		print("s5", s5);
 		
 		
 //		
