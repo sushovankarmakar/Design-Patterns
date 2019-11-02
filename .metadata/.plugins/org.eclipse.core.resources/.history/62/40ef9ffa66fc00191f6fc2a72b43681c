@@ -1,0 +1,14 @@
+package patterns;
+
+public class Singleton {
+	private static Singleton soleInstance = new Singleton();
+	
+	private Singleton() {
+		System.out.println("Creating sole instance");
+	}
+	
+	private static Singleton getInstance() {
+		return soleInstance;
+	}
+
+}
