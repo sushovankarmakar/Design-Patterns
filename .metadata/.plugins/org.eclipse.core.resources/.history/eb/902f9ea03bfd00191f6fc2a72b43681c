@@ -13,7 +13,7 @@ import java.util.concurrent.Executors;
 import javax.management.RuntimeErrorException;
 
 public class Singleton implements Serializable, Cloneable {
-	//private static Singleton soleInstance = new Singleton();    //here object will be created during the class loading phase.
+	//private static Singleton soleInstance = new Singleton();
 	
 	private static Singleton soleInstance = null;
 	
@@ -26,9 +26,8 @@ public class Singleton implements Serializable, Cloneable {
 		System.out.println("Creating sole instance");
 	}
 	
-	public static synchronized Singleton getInstance() {
-		// multiple threads cause trouble only when you're lazily creating the object
-		if(soleInstance == null) soleInstance = new Singleton();    // lazy initialization of object
+	public static Singleton getInstance() {
+		if(soleInstance == null) soleInstance = new Singleton();    // lazy initialization
 		return soleInstance;
 	}
 	
@@ -60,11 +59,11 @@ class TestClass {
 	public static void main(String[] args) throws Exception {
 				
 		
-//		Singleton s1 = Singleton.getInstance();
-//		Singleton s2 = Singleton.getInstance();
-//		
-//		print("s1", s1);
-//		print("s2", s2);
+		Singleton s1 = Singleton.getInstance();
+		Singleton s2 = Singleton.getInstance();
+		
+		print("s1", s1);
+		print("s2", s2);
 		
 		
 		//Reflection example
@@ -76,23 +75,22 @@ class TestClass {
 //		print("s3", s3);
 		
 		//Serialization example
-//		System.out.println("\nSerialization Example");
-//		ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("C:/Users/skarmakar/eclipse-workspace/DesignPatterns"
-//				+ "/JavaDesignPatterns/src/patterns/tmp/s2.ser"));
-//		oos.writeObject(s2);
-//		
-//		ObjectInputStream ois = new ObjectInputStream(new FileInputStream("C:/Users/skarmakar/eclipse-workspace/DesignPatterns"
-//				+ "/JavaDesignPatterns/src/patterns/tmp/s2.ser"));
-//		Singleton s4 = (Singleton)ois.readObject();
-//		
-//		print("s4", s4);
+		System.out.println("\nSerialization Example");
+		ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("C:/Users/skarmakar/eclipse-workspace/DesignPatterns"
+				+ "/JavaDesignPatterns/src/patterns/tmp/s2.ser"));
+		oos.writeObject(s2);
+		
+		ObjectInputStream ois = new ObjectInputStream(new FileInputStream("C:/Users/skarmakar/eclipse-workspace/DesignPatterns"
+				+ "/JavaDesignPatterns/src/patterns/tmp/s2.ser"));
+		Singleton s4 = (Singleton)ois.readObject();
+		
+		print("s4", s4);
 		
 		//Clone example
-//		Singleton s5 = (Singleton) s2.clone();
-//		print("s5", s5);
+		Singleton s5 = (Singleton) s2.clone();
+		print("s5", s5);
 		
-		//Multithreading example
-		System.out.println("\nMultithreading example");
+		
 		ExecutorService service = Executors.newFixedThreadPool(2);
 		service.submit(TestClass::useSingleton);
 		service.submit(TestClass::useSingleton);
