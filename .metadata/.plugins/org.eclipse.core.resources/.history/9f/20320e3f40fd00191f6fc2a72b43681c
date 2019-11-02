@@ -15,7 +15,7 @@ import javax.management.RuntimeErrorException;
 public class Singleton implements Serializable, Cloneable {
 	//private static Singleton soleInstance = new Singleton();    //here object will be created during the class loading phase.
 	
-	private static volatile Singleton soleInstance = null;
+	private static Singleton soleInstance = null;
 	
 	private Singleton() {
 		if(soleInstance != null) {
@@ -28,12 +28,10 @@ public class Singleton implements Serializable, Cloneable {
 	
 	public static Singleton getInstance() {
 		// multiple threads cause trouble only when you're lazily creating the object
-		// double check locking 
-		if(soleInstance == null) {  // check 1
+		if(soleInstance == null) {
+			
 			synchronized(Singleton.class) {
-				if(soleInstance == null) { // check 2
-					soleInstance = new Singleton();    // lazy initialization of object
-				}
+				soleInstance = new Singleton();    // lazy initialization of object
 			}
 		}
 		return soleInstance;
